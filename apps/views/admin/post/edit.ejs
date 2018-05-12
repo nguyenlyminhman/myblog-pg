@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body>
+    <% include ../layout/nav %>
+        <div class="containner">
+                <div class="col-lg-1"></div>
+                <form action="" method="">
+                    <div class="col-lg-10">
+                        <div style=<% if(!data || !data.error){ "display: none;"}%> class="alert alert-danger">
+                            <%if (data && data.error) {%>
+                                <span>
+                                    <%= data.error %>
+                                </span>
+                                <%}%>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Update post
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <div class="form-group">
+                                        <label for="email">Title</label>
+                                        <input type="hidden" name="id" min="4" class="form-control id" value="<%= data.post.id %>" required/>
+                                        <input type="text" name="title" min="4" class="form-control title" value="<%= data.post.title %>" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Content</label>
+                                        <textarea name="content" class="form-control content" rows="5" required> <%- data.post.content %></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Author</label>
+                                        <input type="text" name="author" minlength="4" class="form-control author" value="<%= data.post.author %>" required/>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <input type="button" class="btn btn-success btn-update" value="Update" />
+                                        <input type="reset" class="btn btn-default" value="Reset" />
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                    </div>
+                </form>
+                <div class="col-lg-1"></div>
+            </div>
+</body>
+<% include ../layout/footer %>
+<!-- ckEditor library -->
+<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('content');
+</script>
+</html>
